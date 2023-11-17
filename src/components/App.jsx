@@ -52,18 +52,20 @@ export class App extends Component {
     //   contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
     // );
     return (
-      <ContainerForm>
-        <Title>Phonebook</Title>
-        <ContactForm addContact={this.addContact} />
+      <>
+        <ContainerForm>
+          <Title>Phonebook</Title>
+          <ContactForm addContact={this.addContact} />
 
-        <h2>Contacts</h2>
-        <Filter value={this.state.name} onChange={this.onChange} />
-        {/* <ContactList contacts={this.state.contacts} /> */}
-        <ContactList
-          contacts={filtredContacts}
-          onDeleteContact={this.deleteContact}
-        />
-      </ContainerForm>
+          <h2>Contacts</h2>
+          <Filter value={this.state.name} onChange={this.onChange} />
+          {/* <ContactList contacts={this.state.contacts} /> */}
+          <ContactList
+            contacts={filtredContacts}
+            onDeleteContact={this.deleteContact}
+          />
+        </ContainerForm>
+      </>
     );
   }
 }
