@@ -1,15 +1,35 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { ContactForm } from './ContactForm/ContactForm';
+// import { ContactFormFormik } from './ContactForm/ContactFormFormik';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 
 import { ContainerForm, Title } from './App.styled.js';
+
 export class App extends Component {
   state = {
     contacts: [],
     filter: '',
   };
+
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts');
+
+    const parsedContacts = JSON.parse(contacts);
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
+  componentDidUpdate(prevState) {
+    const nextContacts = this.state.contacts;
+    const prevContacts = prevState.contacts;
+
+    if (nextContacts !== prevContacts) {
+      localStorage.setItem('contacts', JSON.stringify(nextContacts));
+    }
+  }
 
   addContact = data => {
     if (
@@ -56,6 +76,7 @@ export class App extends Component {
         <ContainerForm>
           <Title>Phonebook</Title>
           <ContactForm addContact={this.addContact} />
+          {/* <ContactFormFormik onSubmit={this.addContact}></ContactFormFormik> */}
 
           <h2>Contacts</h2>
           <Filter value={this.state.name} onChange={this.onChange} />

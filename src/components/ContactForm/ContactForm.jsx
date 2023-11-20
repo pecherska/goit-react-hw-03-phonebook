@@ -40,6 +40,7 @@ export class ContactForm extends Component {
           required
           onChange={this.handleChange}
           value={this.state.name}
+          pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         />
         <label htmlFor={this.numberId}>Number</label>
         <FormInput
@@ -49,6 +50,7 @@ export class ContactForm extends Component {
           required
           onChange={this.handleChange}
           value={this.state.number}
+          pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
         />
         <FormButton type="submit">Add contact</FormButton>
       </Form>
